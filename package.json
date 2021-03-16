@@ -1,0 +1,15 @@
+{
+  "name": "node_web_service",
+  "version": "1.0.0",
+  "description": "Trabajo Fin de Grado",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node app.js"
+  },
+  "author": "Luis Chirlaque Hernández",
+  "license": "ISC",
+  "devDependencies": {
+    "nodemon": "^2.0.7"
+  }
+}
