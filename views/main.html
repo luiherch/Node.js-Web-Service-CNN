@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang='es'>
+<head>
+    <meta charset='UTF-8'>
+    <meta name='viewport' content='width=device-width, initial-scale=1.0'>
+    <title>Shadow Moses</title>
+    <link rel='stylesheet' href=''>
+</head>
+<body>
+    <header class='main-header'>
+        <nav class='main-header__nav'>
+            <ul class='main-header__item-list'>
+                <li class='main-header__item'><a href=''></a></li>
+                <li class='main-header__item'><a href=''></a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <h1>Título 1</h1>
+        <p>Sube tu archivo de audio</p>
+        <div>
+            <form action="main" method="POST" enctype="multipart/form-data" >
+                <div>
+                    <input type="file" accept="audio/*" name="audio_track" required>
+                </div>
+                <div>
+                    <input type="radio" id="2stems" name="stems" value="2" required>
+                    <label for="2stems">2 hilos</label>
+                    <input type="radio" id="4stems" name="stems" value="4">
+                    <label for="4stems">4 hilos</label>
+                    <input type="radio" id="5stems" name="stems" value="5">
+                    <label for="5stems">5 hilos</label>
+                </div>
+                <input type="submit">
+            </form>
+        </div>
+    </main>
+</body>
+</html>
