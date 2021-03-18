@@ -11,6 +11,10 @@ class Audio_file {
             this.rating = rating;
         }
     }
+
+    persist (){
+        database.collection('audios').insertOne(this).then(result => {console.log(result)}).catch( error => {console.log(error)});
+    }
 }
 
 module.exports = Audio_file;

@@ -41,9 +41,9 @@ cliente_mongo.connect(
         if (error){
             console.log(error);
             throw error;
-        } else{
-            console.log('Conexión establecida con la base de datos');
+        } else{            
             database = cliente.db();
+            console.log(database);
             server.listen(3000);
         }
     });

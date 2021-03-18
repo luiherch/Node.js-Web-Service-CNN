@@ -12,6 +12,7 @@ exports.manage_audio = (req, res, next) => {
             path: audio_path,
             duration: 100
         });
+        audio_file.persist();
     }
 }
 
