@@ -3,6 +3,9 @@ const express = require('express');
 const rootDir = require('../util/path');
 const router = express.Router();
 
+//importamos controladores
+const controlador = require('../controllers/audio_manager');
+
 // /main => GET
 router.get('/main', (req, res, next) => {
   //enviamos el fichero html estatico
@@ -10,8 +13,6 @@ router.get('/main', (req, res, next) => {
 });
 
 // /main => POST
-router.post('/main', (req, res, next) => {
-  //res.redirect('/');
-});
+router.post('/main', controlador.manage_audio);
 
 module.exports = router;
