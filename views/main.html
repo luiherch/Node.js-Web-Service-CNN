@@ -4,14 +4,14 @@
     <meta charset='UTF-8'>
     <meta name='viewport' content='width=device-width, initial-scale=1.0'>
     <title>Shadow Moses</title>
-    <link rel='stylesheet' href=''>
+    <link rel='stylesheet' href='../public/styles/main.css'>
 </head>
 <body>
     <header class='main-header'>
         <nav class='main-header__nav'>
             <ul class='main-header__item-list'>
-                <li class='main-header__item'><a href=''></a></li>
-                <li class='main-header__item'><a href=''></a></li>
+                <li class='main-header__item'>Probar la red<a href=''></a></li>
+                <li class='main-header__item'>Estadísticas<a href=''></a></li>
             </ul>
         </nav>
     </header>
@@ -31,6 +31,20 @@
                     <label for="4stems">4 hilos</label>
                     <input type="radio" id="5stems" name="stems" value="5">
                     <label for="5stems">5 hilos</label>
+                </div>
+                <div>
+                    <input type="radio" id="128k" name="bitrate" value="128" required disabled>
+                    <label for="128k">128 kbps</label>
+                    <input type="radio" id="96k" name="bitrate" value="96" disabled>
+                    <label for="96k">96 kbps</label>
+                    <input type="radio" id="64k" name="bitrate" value="64">
+                    <label for="64k">64 kbps</label>
+                </div>
+                <div>
+                    <input type="radio" id="m3" name="bitrate" value="mp3" required>
+                    <label for="m3">mp3</label>
+                    <input type="radio" id="wv" name="bitrate" value="wav" disabled>
+                    <label for="wv">wav</label>
                 </div>
                 <input type="submit">
             </form>
