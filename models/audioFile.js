@@ -1,9 +1,11 @@
 
 class AudioFile {
-    constructor (path, duration, stems) {
+    constructor (path, duration, stems, bitrate, codec) {
         this.path = path;
         this.duration = duration;
         this.stems = stems;
+        this.bitrate = bitrate;
+        this.codec = codec;
         this.rating = null;
     }
 
@@ -13,14 +15,14 @@ class AudioFile {
         }
     }
 
-    persist (){
+    persist (database){
         database.collection('audios').insertOne(this).then(result => {console.log(result)}).catch( error => {console.log(error)});
     }
 }
 
 class AudioSeparated {
     constructor (path, ref_id){
-        //ref_id es el id del Audio_file del cual proviene
+        //ref_id es el id del AudioFile del cual proviene
         this.path = path;
         this.ref_id = ref_id;
     }

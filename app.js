@@ -36,10 +36,9 @@ app.use(eController.e404);
 
 const clienteMongo = mongodb.MongoClient;
 const db_url = 'mongodb://127.0.0.1:27017/base_datos_node';
-let database;
 
-/*
-cliente_mongo.connect(
+
+clienteMongo.connect(
     db_url,
     {useNewUrlParser:true, useUnifiedTopology:true},
     (error, cliente) => {
@@ -47,11 +46,8 @@ cliente_mongo.connect(
             console.log(error);
             throw error;
         } else{            
-            database = cliente.db();
-            console.log(database);
+            app.database = cliente.db();
             app.listen(3000);
         }
     });
-    */
-    app.listen(3000);
 

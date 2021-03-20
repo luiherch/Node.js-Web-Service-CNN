@@ -4,7 +4,11 @@ const eController = require ('./errorController');
 exports.manageAudio = (req, res, next) => {
     const audioTrack = req.file;
     const stems = req.body.stems;
-    console.log(audio_track);
+    const bitrate = req.body.bitrate;
+    const codec = req.body.codec;
+    console.log(audioTrack);
+    console.log (stems);
+    console.log (codec);
     if (!audioTrack) {
         //422 entidad improcesable
         return eController.e422;
@@ -13,9 +17,11 @@ exports.manageAudio = (req, res, next) => {
         const audioFile = new AudioFile({
             path: audioPath,
             duration: 100,
-            stems: stems
+            stems: stems,
+            bitrate: bitrate,
+            codec: codec
         });
-        audioFile.persist();
+        audioFile.persist(req.app.database);
     }
 }
 
