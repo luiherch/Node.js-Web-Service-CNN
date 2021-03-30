@@ -18,17 +18,14 @@ class AudioFile {
     persist (database){
         database.collection('audios').insertOne(this).then(result => {console.log(result)}).catch( error => {console.log(error)});
     }
-}
 
-class AudioSeparated {
-    constructor (path, ref_id){
-        //ref_id es el id del AudioFile del cual proviene
-        this.path = path;
-        this.ref_id = ref_id;
-    }
-
-    persist (){
-
+    static findId(database, id){
+        const file = database.collection('audios').findOne({
+            _id: id
+        });
+        if (file) {
+            console.log(file.path);
+        }
     }
 }
 

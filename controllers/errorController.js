@@ -12,6 +12,13 @@ exports.e422 = (req, res, next) => {
     });
 };
 
+exports.e500 = (req, res, next) => {
+    res.status(500).render('error', {
+        codigo: 'Error 500 (Internal Server Error)',
+        mensaje: 'El servidor ha encontrado una situación que no sabe cómo manejarla.'
+    });
+};
+
 exports.e503 = (req, res, next) => {
     res.status(503).render('error', {
         codigo: 'Error 503 (Service Unavailable)',

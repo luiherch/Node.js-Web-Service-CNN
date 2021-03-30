@@ -6,9 +6,6 @@ exports.manageAudio = (req, res, next) => {
     const stems = req.body.stems;
     const bitrate = req.body.bitrate;
     const codec = req.body.codec;
-    console.log(audioTrack);
-    console.log (stems);
-    console.log (codec);
     if (!audioTrack) {
         //422 entidad improcesable
         return eController.e422;
@@ -22,6 +19,7 @@ exports.manageAudio = (req, res, next) => {
             codec: codec
         });
         audioFile.persist(req.app.database);
+        //audioFile.findId(req.app.database, "6057403c300fd716e880c870");
     }
 }
 

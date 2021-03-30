@@ -4,6 +4,7 @@ const path = require('path');
 const mongodb = require('mongodb');
 
 const rutas = require('./routes/main');
+const rutasPrueba = require('./routes/test');
 const eController = require('./controllers/errorController');
 
 const app = express();
@@ -31,6 +32,7 @@ const filtroMime = (req, file, callback) => {
 }
 
 app.use(multer({storage:almacenamiento, fileFilter:filtroMime}).single('audio_track'));
+app.use('/test', rutasPrueba);
 app.use(rutas);
 app.use(eController.e404);
 

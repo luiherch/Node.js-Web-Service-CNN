@@ -4,6 +4,7 @@ Se trata de un servicio web desplegado mediante node.js, capaz de servir una red
 
 ## Requisitos
 Tener instalado Node.js.
+Para instalar las dependencias hace falta Python 2.7 y Visual Studio para los bindings de @tensorflow/tfjs-node conforme a la [documentación oficial](https://www.npmjs.com/package/@tensorflow/tfjs-node).
 
 ## Inicialización
 1. Instalar todos los módulos necesarios mediante `npm install`
