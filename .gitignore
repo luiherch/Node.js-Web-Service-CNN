@@ -3,3 +3,4 @@ node_modules/
 /audios
 /audio_separated
 /pretrained_models
+/data

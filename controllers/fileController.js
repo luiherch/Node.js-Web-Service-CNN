@@ -49,13 +49,16 @@ exports.createZip = () => {
 }
 
 exports.sendZip = (req, res, next) => {
+    /*
+    Crea el zip y lo va stremeando a la respuesta
+    */
+    const zip = archiver('zip');
     //streaming data
-    const file = fs.createReadStream(zipPath);
     res.setHeader('Content-Type', 'application/zip');
-    res.setHeader('Content-Disposition', 'attachment; filename= "' + originalName +'.zip"');
-    archiver.
-    res.send(zipFile);
-    file.pipe(res);
+    res.setHeader('Content-Disposition', 'attachment; filename="example.zip"');
+    zip.pipe(res);
+    zip.directory(process.cwd() + '/audios' , 'Audios').finalize();
     //eliminar los archivos una vez enviados
-    fs.unlink(zipPath);
+    //fs.unlink(zipPath);
+    
 }
