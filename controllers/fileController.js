@@ -4,6 +4,7 @@ const archiver = require ('archiver');
 
 
 exports.createZip = () => {
+    //archivo de prueba para ver como funciona el zip
     //falta parametrizar el output
     const output = fs.createWriteStream(process.cwd() + '/data/example.zip');
     const archive = archiver('zip', {zlib: { level: 9 }});
@@ -49,13 +50,13 @@ exports.createZip = () => {
 }
 
 exports.sendZip = (req, res, next) => {
+    /*
+    Crea el zip y lo va stremeando a la respuesta
+    */
+    const zip = archiver('zip');
     //streaming data
-    const file = fs.createReadStream(zipPath);
     res.setHeader('Content-Type', 'application/zip');
-    res.setHeader('Content-Disposition', 'attachment; filename= "' + originalName +'.zip"');
-    archiver.
-    res.send(zipFile);
-    file.pipe(res);
-    //eliminar los archivos una vez enviados
-    fs.unlink(zipPath);
+    res.setHeader('Content-Disposition', 'attachment; filename="example.zip"');
+    zip.pipe(res);
+    zip.directory(process.cwd() + '/audios' , 'Audios').finalize();
 }
