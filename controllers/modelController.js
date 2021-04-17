@@ -1,4 +1,5 @@
-//const tf = require('@tensorflow/tfjs-node');
+const tf = require('@tensorflow/tfjs-node');
+const fs = require('fs');
 const eController = require ('./errorController');
 
 exports.serveCNN = (req, res, next) => {
@@ -42,5 +43,30 @@ exports.serveCNN = (req, res, next) => {
 
 
     cargarDatos();
+}
+
+exports.loadModel = (req, res, next) => {
+    const camino = process.cwd() + '/modelopb/2stems';
+    const input = process.cwd() + 'mp3_sample/shadow_moses.mp3';
+    console.log(camino);
+    //const model = tf.node.loadSavedModel(camino, 'serve', 'serving_default');
+    //const output = model.predict([input_tensor]);
+
+    tf.node.getMetaGraphsFromSavedModel(camino)
+    .then(modelInfo => {
+        console.log('modelInfo', modelInfo)
+        console.log('tags', modelInfo[0].tags)
+        console.log('signatureDefs', modelInfo[0].signatureDefs)
+        // model load
+        return tf.node.loadSavedModel(camino)
+    }).then(model => {
+        // prediction
+        const output = model.predict(input)
+        console.log(output)
+    }).catch(error => {
+      console.error(error.stack);
+    });
+
+    
 }
 

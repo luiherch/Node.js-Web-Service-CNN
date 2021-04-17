@@ -8,7 +8,7 @@ const controladorModelo = require('../controllers/modelController');
 const fileController = require('../controllers/fileController');
 
 // /test/model
-router.get('/model', controladorModelo.serveCNN);
+router.get('/model', controladorModelo.loadModel);
 
 // /test/zip
 router.get('/zip', fileController.createZip);

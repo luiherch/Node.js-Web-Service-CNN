@@ -4,6 +4,7 @@ const archiver = require ('archiver');
 
 
 exports.createZip = () => {
+    //archivo de prueba para ver como funciona el zip
     //falta parametrizar el output
     const output = fs.createWriteStream(process.cwd() + '/data/example.zip');
     const archive = archiver('zip', {zlib: { level: 9 }});
@@ -58,7 +59,4 @@ exports.sendZip = (req, res, next) => {
     res.setHeader('Content-Disposition', 'attachment; filename="example.zip"');
     zip.pipe(res);
     zip.directory(process.cwd() + '/audios' , 'Audios').finalize();
-    //eliminar los archivos una vez enviados
-    //fs.unlink(zipPath);
-    
 }

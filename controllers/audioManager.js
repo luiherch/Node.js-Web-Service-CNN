@@ -1,5 +1,6 @@
 const AudioFile = require ('../models/audioFile');
 const eController = require ('./errorController');
+const ffmpeg = require('ffmpeg');
 
 exports.manageAudio = (req, res, next) => {
     const audioTrack = req.file;
@@ -23,3 +24,6 @@ exports.manageAudio = (req, res, next) => {
     }
 }
 
+exports.generateInput = (filePath) => {
+    
+}
