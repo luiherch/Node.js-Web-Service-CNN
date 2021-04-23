@@ -6,6 +6,7 @@ const router = express.Router();
 
 const controladorModelo = require('../controllers/modelController');
 const fileController = require('../controllers/fileController');
+const audioController = require('../controllers/audioManager');
 
 // /test/model
 router.get('/model', controladorModelo.loadModel);
@@ -15,6 +16,9 @@ router.get('/zip', fileController.createZip);
 
 // /test/sendzip
 router.get('/sendzip', fileController.sendZip);
+
+// /test/waveform
+router.get('/waveform', audioController.generateWaveform);
 
 router.post('/zip', fileController.sendZip);
 

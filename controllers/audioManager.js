@@ -1,6 +1,7 @@
 const AudioFile = require ('../models/audioFile');
 const eController = require ('./errorController');
-const ffmpeg = require('ffmpeg');
+const ff = require ('../audio/ffmpeg');
+
 
 exports.manageAudio = (req, res, next) => {
     const audioTrack = req.file;
@@ -24,6 +25,8 @@ exports.manageAudio = (req, res, next) => {
     }
 }
 
-exports.generateInput = (filePath) => {
-    
+exports.generateWaveform = () => {
+    const path = process.cwd() + '/mp3_sample/audio_example.mp3';
+    args = process.cwd() + '/audio_separated/test.wav'
+    ff.test(path, args)
 }

@@ -2,6 +2,8 @@ const tf = require('@tensorflow/tfjs-node');
 const fs = require('fs');
 const eController = require ('./errorController');
 
+const ffmpeg = require ('../audio/ffmpeg')
+
 exports.serveCNN = (req, res, next) => {
     // const path;
     // const signatureKey;
@@ -47,7 +49,7 @@ exports.serveCNN = (req, res, next) => {
 
 exports.loadModel = (req, res, next) => {
     const camino = process.cwd() + '/modelopb/2stems';
-    const input = process.cwd() + 'mp3_sample/shadow_moses.mp3';
+    const input = process.cwd() + '/mp3_sample/audio_example.mp3';
     console.log(camino);
     //const model = tf.node.loadSavedModel(camino, 'serve', 'serving_default');
     //const output = model.predict([input_tensor]);
@@ -60,9 +62,11 @@ exports.loadModel = (req, res, next) => {
         // model load
         return tf.node.loadSavedModel(camino)
     }).then(model => {
+        // load mp3
+        ffmpeg.load(input)
         // prediction
-        const output = model.predict(input)
-        console.log(output)
+        //const output = model.predict(input)
+        //console.log(output)
     }).catch(error => {
       console.error(error.stack);
     });
