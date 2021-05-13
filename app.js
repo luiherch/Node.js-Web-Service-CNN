@@ -32,6 +32,7 @@ const filtroMime = (req, file, callback) => {
 }
 
 app.use(multer({storage:almacenamiento, fileFilter:filtroMime}).single('audio_track'));
+app.use(express.static(__dirname + '/public'));
 app.use('/test', rutasPrueba);
 app.use(rutas);
 app.use(eController.e404);
@@ -40,16 +41,17 @@ const clienteMongo = mongodb.MongoClient;
 const db_url = 'mongodb://127.0.0.1:27017/base_datos_node';
 
 
-clienteMongo.connect(
-    db_url,
-    {useNewUrlParser:true, useUnifiedTopology:true},
-    (error, cliente) => {
-        if (error){
-            console.log(error);
-            throw error;
-        } else{            
-            app.database = cliente.db();
-            app.listen(3000);
-        }
-    });
+// clienteMongo.connect(
+//     db_url,
+//     {useNewUrlParser:true, useUnifiedTopology:true},
+//     (error, cliente) => {
+//         if (error){
+//             console.log(error);
+//             throw error;
+//         } else{            
+//             app.database = cliente.db();
+//             app.listen(3000);
+//         }
+//     });
 
+app.listen(3000)

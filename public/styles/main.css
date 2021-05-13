@@ -1,3 +1,40 @@
+:root{
+    --azul-oscuro:#024873;
+    --azul:#025373;
+    --amarillo:#F2B705;
+    --marron:#D98E04;
+    --naranja:#D97904;
+}
+
 body{
-    background: yellow;
+    background: var(--azul-oscuro);
+}
+
+nav{
+    position: fixed;
+    top: 0px;
+    width: 100%;
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    font-size: 17px;
+}
+
+ul{
+    background: var(--azul);
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+li{
+    display: inline;
+
+}
+
+li a{
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.active{
+    background: var(--amarillo);
 }

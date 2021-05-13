@@ -2,7 +2,8 @@ const tf = require('@tensorflow/tfjs-node');
 const fs = require('fs');
 const eController = require ('./errorController');
 
-const ffmpeg = require ('../audio/ffmpeg')
+const ffmpeg = require ('../audio/ffmpeg');
+const { tensor1d } = require('@tensorflow/tfjs-node');
 
 exports.serveCNN = (req, res, next) => {
     // const path;
@@ -47,7 +48,7 @@ exports.serveCNN = (req, res, next) => {
     cargarDatos();
 }
 
-exports.loadModel = (req, res, next) => {
+exports.loadModel = (aud) => {
     const camino = process.cwd() + '/modelopb/2stems';
     const input = process.cwd() + '/mp3_sample/audio_example.mp3';
     console.log(camino);
@@ -63,10 +64,18 @@ exports.loadModel = (req, res, next) => {
         return tf.node.loadSavedModel(camino)
     }).then(model => {
         // load mp3
-        ffmpeg.load(input)
         // prediction
-        //const output = model.predict(input)
-        //console.log(output)
+        //console.log(aud)
+        //const inputTensor = tf.tensor2d(waveform.data, [ waveform.data.length, 1], 'float32' );
+        tens = tf.tensor(['id'])
+        const inputs = {
+            audio_id: tens,
+            mix_spectrogram: tf.randomNormal([2, 512, 1024, 2]),
+            mix_stft: tf.randomNormal([2, 2049, 2]),
+            waveform: tf.randomNormal([2, 2])
+        };
+        const output = model.predict(inputs)
+        console.log(output)
     }).catch(error => {
       console.error(error.stack);
     });

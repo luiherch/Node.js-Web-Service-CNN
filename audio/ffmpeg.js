@@ -2,6 +2,7 @@ const ffmpeg = require('fluent-ffmpeg');
 const { exec } = require('child_process');
 
 const arrays = require('../util/arrays');
+const controladorModelo = require('../controllers/modelController');
 
 
 const fs = require('fs');
@@ -49,12 +50,35 @@ exports.test = (path, kwargs) => {
       rs.on('data', chunk => {
         console.log('---------------------------------');
         console.log(chunk);
+        
         chunkLength = Buffer.byteLength(chunk)
-        for (var j = 0; j<chunkLength/4; j += 1){
+        console.log(chunkLength)
+        for (var j = 0; j<Math.floor(chunkLength/4); j += 1){
           data[j] = Buffer.from(chunk).readFloatLE(j*4)
         }
         dataReshaped = arrays.reshape(data, 2)
         console.log(dataReshaped)
+        ins = {
+          audio_id: {
+            dtype: 'string',
+            name: 'audio_id:0'
+          },
+          mix_spectrogram: {
+            dtype: 'float32',
+            name: 'strided_slice_3:0'
+          },
+          mix_stft: {
+            dtype: 'complex64',
+            name: 'transpose_1:0'
+          },
+          waveform: {
+            dtype: 'float32',
+            name: 'waveform:0',
+            shape: dataReshaped
+          }
+        }
+        console.log(ins)
+        controladorModelo.loadModel(ins)
         //AHORA ENVIARLA A ALGUN LADO PORQUE LA ESTOY MACHACANDO ENCIMA DE SI MISMA Y PERDIENDO LOS DATOS
         console.log('---------------------------------');
       });
