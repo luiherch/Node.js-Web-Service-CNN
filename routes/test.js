@@ -20,6 +20,12 @@ router.get('/sendzip', fileController.sendZip);
 // /test/waveform
 router.get('/waveform', audioController.generateWaveform);
 
+// /test/child
+router.get('/child', controladorModelo.childProcess);
+
+// /test/spleeter
+router.get('/spleeter', controladorModelo.spleeter);
+
 router.post('/zip', fileController.sendZip);
 
 module.exports = router;
