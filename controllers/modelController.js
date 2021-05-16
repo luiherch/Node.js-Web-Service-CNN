@@ -1,51 +1,47 @@
 const tf = require('@tensorflow/tfjs-node');
 const fs = require('fs');
 const eController = require ('./errorController');
+const { spawn } = require('child_process');
 
 const ffmpeg = require ('../audio/ffmpeg');
 const { tensor1d } = require('@tensorflow/tfjs-node');
 
-exports.serveCNN = (req, res, next) => {
-    // const path;
-    // const signatureKey;
-    // const input;
-
-    //segun doc oficial de tensorflow
-    //const model = await tf.node.loadSavedModel(path, signatureKey);
-    //const output = model.predict(input);
-
-    const cargarDatos = () => {
-        let flag = false;
-        let loadModel = new Promise((resolve, reject) => {
-            //cargar el modelo
-            //const model = await tf.node.loadSavedModel(path, signatureKey);
-            resolve('Todo bien');
+exports.childProcess = (req, res, next) => {
+    //suponemos que nos entran las siguientes variables del formulario obtenidas de req:
+    let hilos = 5;
+    let bitrate = 96;
+    let codec = 'mp3';
+    let dataToSend;
+    const python = spawn('python', ['python_scripts/test.py', hilos, bitrate]);
+    python.stdout.on('data', function (data) {
+        console.log('Pipe data from python script ...');
+        dataToSend = data.toString();
+       });
+    python.on('close', (code) => {
+        console.log(`child process close all stdio with code ${code}`);
+        // send data to browser
+        res.send(dataToSend)
         });
-        let loadTrack = new Promise((resolve, reject) => {
-            //cargar la pista de audio
-            reject('La pista no se ha cargado');
+}
+
+exports.spleeter = (req, res, next) => {
+    let hilos = 5;
+    let bitrate = 96;
+    let codec = 'mp3';
+    let dataToSend;
+    const python = spawn('python', ['python_scripts/spleeter/__main__.py', 'separate', '-i', 'audio_example.mp3', '-p', 'spleeter:2stems', '-o', 'audio_separated']);
+    python.stdout.on('data', function (data) {
+        console.log('Pipe data from python script ...');
+        dataToSend = data.toString();
+       });
+    python.on('close', (code) => {
+        console.log(`child process close all stdio with code ${code}`);
+        // send data to browser
+        res.send(dataToSend)
         });
-    
-        Promise.all([loadModel, loadTrack]).then(values => {
-                console.log(values);
-                flag = true;
-                console.log(flag);
-                return flag;
-            }).then(values => {
-                console.log(flag);
-                console.log('segundo then');
-                //const output = model.predict(input);
-                //return output;
-            }).catch(e => {
-                console.log(e);
-                flag = false;
-                console.log(flag);
-                eController.e500(req, res, next);
-            });
-    }
-
-
-    cargarDatos();
+    python.stderr.on('data', (data) => {
+        console.error(`stderr: ${data}`);
+        });
 }
 
 exports.loadModel = (aud) => {
