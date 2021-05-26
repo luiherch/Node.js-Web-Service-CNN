@@ -1,7 +1,8 @@
 const fs = require ('fs');
 const path = require ('path');
 const archiver = require ('archiver');
-
+const zips = require('../services/zips');
+const spleeter = require('../services/spleeter')
 
 exports.createZip = () => {
     //archivo de prueba para ver como funciona el zip
@@ -58,5 +59,27 @@ exports.sendZip = (req, res, next) => {
     res.setHeader('Content-Type', 'application/zip');
     res.setHeader('Content-Disposition', 'attachment; filename="example.zip"');
     zip.pipe(res);
-    zip.directory(process.cwd() + '/audios' , 'Audios').finalize();
+    zip.directory(process.cwd() + '/mp3_sample' , 'Audios').finalize();
+}
+
+exports.fullFunction = (req, res, next) => {
+    /*
+    const audioTrack = req.file;
+    const hilos = req.body.stems;
+    const bitrate = req.body.bitrate;
+    const codec = req.body.codec;
+    */
+    let archivo = 'Prueba';
+    let path = process.cwd() + '/mp3_sample';
+    file = 'audio_example.mp3'
+    hilos = '2 hilos';
+    let stems = spleeter.hilos(hilos);
+    spleeter.spawnSpleeter(1,1,stems,file)
+    .then((code)=>{
+        console.log(code);
+        zips.sendZip(file,res,path);
+    })
+    .catch((err)=>{
+        console.log(err);
+    })
 }

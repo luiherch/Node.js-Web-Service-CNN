@@ -26,6 +26,8 @@ router.get('/child', controladorModelo.childProcess);
 // /test/spleeter
 router.get('/spleeter', controladorModelo.spleeter);
 
+router.get('/full', fileController.fullFunction);
+
 router.post('/zip', fileController.sendZip);
 
 module.exports = router;
