@@ -23,17 +23,17 @@ exports.spawnSpleeter = (bitrate, codec, stems, file) => {
 exports.hilos = (hilo) => {
     let stems;
     switch (hilo){
-        case '2 hilos':
+        case '2':
             stems = 'spleeter:2stems';
             break;
-        case '4 hilos':
+        case '4':
             stems = 'spleeter:4stems';
             break;
-        case '5 hilos':
+        case '5':
             stems = 'spleeter:5stems';
             break;
         default:
-            stems = null;
+            stems = 'spleeter:2stems';
             break;
     }
     return stems;

@@ -4,7 +4,8 @@ const rootDir = require('../util/path');
 const router = express.Router();
 
 //importamos controladores
-const controlador = require('../controllers/audioManager');
+//const controlador = require('../controllers/audioManager');
+const controlador = require('../controllers/fileController');
 
 // /main => GET
 router.get('/main', (req, res, next) => {
@@ -13,6 +14,7 @@ router.get('/main', (req, res, next) => {
 });
 
 // /main => POST
-router.post('/main', controlador.manageAudio);
+//router.post('/main', controlador.manageAudio);
+router.post('/main', controlador.fullFunction);
 
 module.exports = router;
