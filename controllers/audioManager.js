@@ -1,6 +1,5 @@
 const AudioFile = require ('../models/audioFile');
 const eController = require ('./errorController');
-const ff = require ('../audio/ffmpeg');
 
 
 exports.manageAudio = (req, res, next) => {
@@ -14,19 +13,17 @@ exports.manageAudio = (req, res, next) => {
     } else{
         const audioPath = audioTrack.path;
         const audioFile = new AudioFile({
+            title: req.file.originalname,
             path: audioPath,
             duration: 100,
             stems: stems,
             bitrate: bitrate,
-            codec: codec
+            codec: codec,
+            rating: null
         });
-        audioFile.persist(req.app.database);
-        //audioFile.findId(req.app.database, "6057403c300fd716e880c870");
+        audioFile.save().then(result => {
+            console.log("Mongoose: Audio File added to the db");
+            res.redirect('/main');
+        })
     }
-}
-
-exports.generateWaveform = () => {
-    const path = process.cwd() + '/mp3_sample/audio_example.mp3';
-    args = process.cwd() + '/audio_separated/test.wav'
-    ff.test(path, args)
 }

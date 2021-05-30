@@ -17,14 +17,14 @@ router.get('/zip', fileController.createZip);
 // /test/sendzip
 router.get('/sendzip', fileController.sendZip);
 
-// /test/waveform
-router.get('/waveform', audioController.generateWaveform);
-
 // /test/child
 router.get('/child', controladorModelo.childProcess);
 
 // /test/spleeter
 router.get('/spleeter', controladorModelo.spleeter);
+
+// /test/full
+router.get('/full', fileController.fullFunction);
 
 router.post('/zip', fileController.sendZip);
 

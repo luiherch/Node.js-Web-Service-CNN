@@ -1,7 +1,7 @@
 const express = require('express');
 const multer = require('multer');
 const path = require('path');
-const mongodb = require('mongodb');
+const mongoose = require('mongoose')
 
 const rutas = require('./routes/main');
 const rutasPrueba = require('./routes/test');
@@ -23,10 +23,10 @@ const almacenamiento = multer.diskStorage({
 const filtroMime = (req, file, callback) => {
     console.log(file.mimetype);
     if (file.mimetype === 'audio/mpeg' || file.mimetype === 'audio/wav'){
-        console.log("Se guarda");
+        console.log("Multer: Archivo almacenado");
         callback(null, true);
     } else{
-        console.log("No se guarda");
+        console.log("Multer: Error al almacenar");
         callback(null, false);
     }
 }
@@ -37,21 +37,10 @@ app.use('/test', rutasPrueba);
 app.use(rutas);
 app.use(eController.e404);
 
-const clienteMongo = mongodb.MongoClient;
-const db_url = 'mongodb://127.0.0.1:27017/base_datos_node';
+const db_url = 'mongodb://127.0.0.1:27017/base_datos_spleeter';
 
-
-// clienteMongo.connect(
-//     db_url,
-//     {useNewUrlParser:true, useUnifiedTopology:true},
-//     (error, cliente) => {
-//         if (error){
-//             console.log(error);
-//             throw error;
-//         } else{            
-//             app.database = cliente.db();
-//             app.listen(3000);
-//         }
-//     });
-
-app.listen(3000)
+mongoose.connect(db_url).then(result => {
+    app.listen(3000);
+}).catch(err => {
+    console.log(err);
+});

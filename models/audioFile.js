@@ -1,32 +1,15 @@
+const mongoose = require('mongoose');
 
-class AudioFile {
-    constructor (path, duration, stems, bitrate, codec) {
-        this.path = path;
-        this.duration = duration;
-        this.stems = stems;
-        this.bitrate = bitrate;
-        this.codec = codec;
-        this.rating = null;
-    }
+const Schema = mongoose.Schema;
 
-    setRating (rating){
-        if (rating){
-            this.rating = rating;
-        }
-    }
+const audioSchema = new Schema ({
+    title: String,
+    path: String,
+    duration: Number,
+    stems: Number,
+    bitrate: Number,
+    codec: String,
+    rating: Number
+});
 
-    persist (database){
-        database.collection('audios').insertOne(this).then(result => {console.log(result)}).catch( error => {console.log(error)});
-    }
-
-    static findId(database, id){
-        const file = database.collection('audios').findOne({
-            _id: id
-        });
-        if (file) {
-            console.log(file.path);
-        }
-    }
-}
-
-module.exports = AudioFile;
+module.exports = mongoose.model('Audio', audioSchema);
