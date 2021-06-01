@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang='es'>
+<head>
+    <meta charset='UTF-8'>
+    <meta name='viewport' content='width=device-width, initial-scale=1.0'>
+    <title>Shadow Moses</title>
+    <link rel='stylesheet' type = 'text/css' href='styles/main.css'>
+</head>
+<body>
+    <header class='main-header'>
+        <nav class='main-header__nav'>
+            <ul class='main-header__item-list'>
+                <li class='main-header__item'><a class= 'active' href=''>Probar la red</a></li>
+                <li class='main-header__item'><a href=''>Estadísticas</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <h1>Registro</h1>
+        <p>Registro para poder utilizar el servicio REST</p>
+        <div id="form">
+            <form action="signup" method="POST">
+                <div>
+                    <input type="email" name="email" placeholder="email">
+                </div>
+                <div>
+                    <input type="password" name="pw" placeholder="password">
+                </div>
+                <input type="submit">
+            </form>
+        </div>
+    </main>
+</body>
+</html>
