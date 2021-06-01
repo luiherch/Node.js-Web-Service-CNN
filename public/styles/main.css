@@ -11,27 +11,25 @@ body{
 }
 
 nav{
-    position: fixed;
-    top: 0px;
+    /* top: 0px; */
     width: 100%;
     font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
     font-size: 17px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
 }
 
-ul{
-    background: var(--azul);
-    list-style-type: none;
-    margin: 0;
+.nav-menu{
     padding: 0;
-    align-items: center;
-    display: inline-flex;
-    border-radius: .375rem;
+    display: flex;
+    justify-content: space-between;
+    list-style: none;
 }
 
-/* li{
-    display: inline;
-
-} */
+.menu-item{
+    margin: 0px 15px 0px 15px;
+}
 
 li a{
     text-decoration: none;

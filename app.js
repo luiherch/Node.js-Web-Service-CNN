@@ -1,15 +1,24 @@
 const express = require('express');
 const multer = require('multer');
-const path = require('path');
-const mongoose = require('mongoose')
+const mongoose = require('mongoose');
+const bodyParser = require('body-parser');
+const session = require('express-session');
+const sessionStorage = require('connect-mongodb-session')(session);
 
 const rutas = require('./routes/main');
 const rutasPrueba = require('./routes/test');
 const eController = require('./controllers/errorController');
 
-const app = express();
+const db_url = 'mongodb://127.0.0.1:27017/base_datos_spleeter';
 
-app.set('view engine', 'pug');
+const app = express();
+const sesStorage = new sessionStorage({
+    uri: db_url,
+    collection: 'sesiones'
+});
+
+app.set('view engine', 'ejs');
+app.set('views', 'views');
 
 const almacenamiento = multer.diskStorage({
     destination: (req, file, callback) => {
@@ -33,11 +42,14 @@ const filtroMime = (req, file, callback) => {
 
 app.use(multer({storage:almacenamiento, fileFilter:filtroMime}).single('audio_track'));
 app.use(express.static(__dirname + '/public'));
+app.use(session({secret:'sopa do macaco', resave: false, saveUninitialized:false, store: sesStorage}));
 app.use('/test', rutasPrueba);
+app.use(bodyParser.urlencoded({
+    extended: true
+  }));
 app.use(rutas);
 app.use(eController.e404);
 
-const db_url = 'mongodb://127.0.0.1:27017/base_datos_spleeter';
 
 mongoose.connect(db_url).then(result => {
     app.listen(3000);
