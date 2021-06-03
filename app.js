@@ -7,9 +7,11 @@ const sessionStorage = require('connect-mongodb-session')(session);
 
 const rutas = require('./routes/main');
 const rutasPrueba = require('./routes/test');
+const rutasREST = require('./routes/rest');
 const eController = require('./controllers/errorController');
 
 const db_url = 'mongodb://127.0.0.1:27017/base_datos_spleeter';
+const auth = require('./services/autenticacion');
 
 const app = express();
 const sesStorage = new sessionStorage({
@@ -48,6 +50,10 @@ app.use(bodyParser.urlencoded({
     extended: true
   }));
 app.use(rutas);
+
+app.use(auth.corsHeaders);
+app.use(express.json());
+app.use(rutasREST);
 app.use(eController.e404);
 
 

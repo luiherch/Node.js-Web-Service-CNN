@@ -1,6 +1,5 @@
 
 const express = require('express');
-const rootDir = require('../util/path');
 const router = express.Router();
 
 
@@ -26,6 +25,7 @@ router.get('/spleeter', controladorModelo.spleeter);
 // /test/full
 router.get('/full', fileController.fullFunction);
 
+// /test/zip
 router.post('/zip', fileController.sendZip);
 
 module.exports = router;

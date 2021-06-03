@@ -2,7 +2,7 @@
     <nav>
         <ul class='nav-menu'>
             <li class='menu-item'><a class= "<%= path === '/main' ? 'active' : '' %>" href='/main'>Probar la red</a></li>
-            <li class='menu-item'><a href=''>Estadísticas</a></li>
+            <li class='menu-item'><a class= "<%= path === '/api' ? 'active' : '' %>" href='/api'>API</a></li>
         </ul>
         <ul class='nav-menu'>
         <% if (!autenticado) { %>

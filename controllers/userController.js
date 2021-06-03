@@ -1,19 +1,31 @@
 const User = require('../models/Users');
 
 exports.signup = (req, res, next) => {
-    let user = new User();
-    user.email = req.body.email;
+    let email = req.body.email;
     let pw = req.body.pw;
-    user.setPassword(pw, user);
-    user.save().then(result => {
-        res.status(201).send({ 
-            message : "User added successfully."
-        }); 
-    }).catch(err => {
-        res.status(400).send({ 
-            message : "Mala suerte amigo."
-        }); 
-    })
+    User.findOne({email: email}, (err, user)=>{
+        if (!user){
+            let user = new User();
+            user.email = req.body.email;
+            let pw = req.body.pw;
+            user.setPassword(pw, user);
+            user.save().then(result => {
+                res.status(201).send({ 
+                    message : "User added successfully."
+                }); 
+            }).catch(err => {
+                res.status(400).send({ 
+                    message : "Mala suerte amigo."
+                }); 
+            })
+        }
+        else{
+            res.status(400).send({ 
+                message : "Usuario ya existe"
+            }); 
+        }
+    });
+    
 }
 
 exports.login = (req, res, next) => {
@@ -30,9 +42,7 @@ exports.login = (req, res, next) => {
                 req.session.logged = true;
                 req.session.user = user;
                 return req.session.save((err) => {
-                    res.status(200).send({ 
-                        message : "User Logged In", 
-                    }) 
+                    res.redirect('/main');
                 })
                 
             }

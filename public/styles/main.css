@@ -1,23 +1,34 @@
 :root{
-    --azul-oscuro:#011640;
-    --azul:#021F59;
+    --azul-oscuro:#202124;
+    --azul:#344973;
     --azul-claro:#1DF2DD;
-    --rosa:#D9437A;
+    --rosa:#D94862;
     --lila:#31238C;
+    --amarillo:#F2E750;
+    --naranja-fuerte:#D97904;
+    --naranja-suave:#F2B705;
+    --devsite-h1-font: 400 32px/40px Google Sans,Noto Sans,Noto Sans JP,Noto Sans KR,Noto Naskh Arabic,Noto Sans Thai,Noto Sans Hebrew,Noto Sans Bengali,sans-serif;
+}
+
+html{
+    height: 100%;
 }
 
 body{
-    background: var(--lila);
+    height: 100%;
+    background: linear-gradient(60deg, var(--naranja-fuerte), var(--naranja-suave));
+    margin: 0px 0px 0px 0px;
 }
 
 nav{
     /* top: 0px; */
     width: 100%;
-    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    font: var(--devsite-h1-font,300 34px/40px Roboto,Noto Sans,Noto Sans JP,Noto Sans KR,Noto Naskh Arabic,Noto Sans Thai,Noto Sans Hebrew,Noto Sans Bengali,sans-serif);
     font-size: 17px;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+    background: var(--azul-oscuro);
 }
 
 .nav-menu{
@@ -25,6 +36,8 @@ nav{
     display: flex;
     justify-content: space-between;
     list-style: none;
+    margin-top: 10px;
+    margin-bottom: 10px;
 }
 
 .menu-item{
@@ -34,10 +47,11 @@ nav{
 li a{
     text-decoration: none;
     cursor: pointer;
+    color: white
 }
 
 .active{
-    background: var(--rosa)
+    color: var(--amarillo)
 }
 
 #form{

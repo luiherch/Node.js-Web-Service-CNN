@@ -1,6 +1,4 @@
-const path = require('path');
 const express = require('express');
-const rootDir = require('../util/path');
 const router = express.Router();
 
 //importamos controladores
@@ -12,11 +10,23 @@ const auth = require('../services/autenticacion');
 
 // /main => GET
 router.get('/main', (req, res, next) => {
-  //enviamos el fichero html estatico
-  //res.sendFile(path.join(rootDir, 'views', 'main.ejs'));
   res.render('main', {
     autenticado: req.session.logged,
     path: '/main'
+  });
+});
+
+router.get('/signup', (req, res, next) => {
+  res.render('signup', {
+    autenticado: false,
+    path: '/signup'
+  });
+});
+
+router.get('/login', (req, res, next) => {
+  res.render('login', {
+    autenticado: false,
+    path: '/login'
   });
 });
 
@@ -24,23 +34,7 @@ router.get('/main', (req, res, next) => {
 //router.post('/main', controlador.manageAudio);
 router.post('/main', controlador.fullFunction);
 
-router.get('/signup', (req, res, next) => {
-  //enviamos el fichero html estatico
-  res.render('signup', {
-    autenticado: false,
-    path: '/signup'
-  });
-});
-
 router.post('/signup', userController.signup);
-
-router.get('/login', (req, res, next) => {
-  //enviamos el fichero html estatico
-  res.render('login', {
-    autenticado: false,
-    path: '/login'
-  });
-});
 
 router.post('/login', userController.login);
 
