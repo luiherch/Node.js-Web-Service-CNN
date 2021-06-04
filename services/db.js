@@ -13,9 +13,9 @@ exports.saveAudioFile = (audio, nombre, stems, bitrate, codec) =>{
             codec: codec,
             rating: null
         });
-        audioFile.save().then(result => {
+        audioFile.save().then((audioObj)=> {
             console.log("Mongoose: Audio File added to the db");
-            resolve(result);
+            resolve(audioObj._id);
         }).catch(err => reject(err));
     });
 }

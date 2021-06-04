@@ -75,15 +75,17 @@ exports.fullFunction = (req, res, next) => {
         return eController.e422;
     }
     const nombre = req.file.originalname;
-    db.saveAudioFile(audioTrack, nombre, hilos, bitrate, codec).then( result => {
-        console.log(result);
-        let path = process.cwd() + '/mp3_sample';
-        let file = 'audio_example.mp3'      
-        let stems = spleeter.hilos(hilos);
-        spleeter.spawnSpleeter(1,1,stems,file)
-        .then((code)=>{
-            console.log(code);
-            zips.sendZip(file,res,path);
+    db.saveAudioFile(audioTrack, nombre, hilos, bitrate, codec)
+        .then( id => {
+            console.log(id);
+            //let path = process.cwd() + '/mp3_sample';     
+            let stems = spleeter.hilos(hilos);
+            spleeter.spawnSpleeter(id,1,1,stems)
+        .then(code =>{
+            console.log(code[0]);
+            console.log(code[1]);
+            console.log(code[2]);
+            zips.sendZip(code[1],res,code[2]);
         })
         .catch((err)=>{
             console.log(err);
