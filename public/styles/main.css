@@ -21,7 +21,7 @@ body{
 }
 
 nav{
-    /* top: 0px; */
+    top: 0px;
     width: 100%;
     font: var(--devsite-h1-font,300 34px/40px Roboto,Noto Sans,Noto Sans JP,Noto Sans KR,Noto Naskh Arabic,Noto Sans Thai,Noto Sans Hebrew,Noto Sans Bengali,sans-serif);
     font-size: 17px;
@@ -57,7 +57,7 @@ li a{
 .container{
     display: flex;
     position: relative;
-    height: 940px;
+    height: 860px;
 }
 
 .imagen{
@@ -71,6 +71,7 @@ li a{
 .main-header{
     position: absolute;
     width: 100%;
+    z-index: 15;
 }
 
 .titulo{
@@ -79,7 +80,7 @@ li a{
     width: auto;
     height: 300px;
     margin-left: auto;
-    margin-right: 100px;
+    margin-right: 140px;
     margin-top: 360px;
 }
 
@@ -129,7 +130,7 @@ input[type="submit"],
 input[type="file"]{
   display: inline-block;
   height: 38px;
-  padding: 0 30px;
+  padding: 0 30px !important;
   color: #555;
   text-align: center;
   font-size: 11px;
