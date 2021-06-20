@@ -80,7 +80,7 @@ exports.fullFunction = (req, res, next) => {
             console.log(id);
             //let path = process.cwd() + '/mp3_sample';     
             let stems = spleeter.hilos(hilos);
-            spleeter.spawnSpleeter(id,1,1,stems)
+            spleeter.spawnSpleeter(id, bitrate, codec, stems)
         .then(code =>{
             console.log(code[0]);
             console.log(code[1]);

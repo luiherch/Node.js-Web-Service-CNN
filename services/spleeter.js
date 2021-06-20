@@ -6,6 +6,7 @@ exports.spawnSpleeter = (id, bitrate, codec, stems) => {
     /*
     id: id del audio de la base de datos
     */
+   console.log(codec)
     return new Promise ((resolve, reject) => {
         AudioFile.findById(id, (err, audioFile) => {
             if (err){
@@ -14,7 +15,7 @@ exports.spawnSpleeter = (id, bitrate, codec, stems) => {
             else{
                 let audioPath = audioFile.path;
                 let dataToSend;
-                const python = spawn('python', ['python_scripts/spleeter/__main__.py', 'separate', '-i', audioPath, '-p', stems, '-o', 'audio_separated']);
+                const python = spawn('python', ['python_scripts/spleeter/__main__.py', 'separate', '-i', audioPath, '-p', stems, '-c', codec, '-b', bitrate, '-o', 'audio_separated']);
                 python.stdout.on('data', function (data) {
                     console.log('Pipe data from python script ...');
                     dataToSend = data.toString();
