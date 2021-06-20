@@ -1,48 +1,5 @@
 const tf = require('@tensorflow/tfjs-node');
 const fs = require('fs');
-const eController = require ('./errorController');
-const { spawn } = require('child_process');
-
-const ffmpeg = require ('../audio/ffmpeg');
-const { tensor1d } = require('@tensorflow/tfjs-node');
-
-exports.childProcess = (req, res, next) => {
-    //suponemos que nos entran las siguientes variables del formulario obtenidas de req:
-    let hilos = 5;
-    let bitrate = 96;
-    let codec = 'mp3';
-    let dataToSend;
-    const python = spawn('python', ['python_scripts/test.py', hilos, bitrate]);
-    python.stdout.on('data', function (data) {
-        console.log('Pipe data from python script ...');
-        dataToSend = data.toString();
-       });
-    python.on('close', (code) => {
-        console.log(`child process close all stdio with code ${code}`);
-        // send data to browser
-        res.send(dataToSend)
-        });
-}
-
-exports.spleeter = (req, res, next) => {
-    let hilos = 5;
-    let bitrate = 96;
-    let codec = 'mp3';
-    let dataToSend;
-    const python = spawn('python', ['python_scripts/spleeter/__main__.py', 'separate', '-i', 'audio_example.mp3', '-p', 'spleeter:2stems', '-o', 'audio_separated']);
-    python.stdout.on('data', function (data) {
-        console.log('Pipe data from python script ...');
-        dataToSend = data.toString();
-       });
-    python.on('close', (code) => {
-        console.log(`child process close all stdio with code ${code}`);
-        // send data to browser
-        res.send(dataToSend)
-        });
-    python.stderr.on('data', (data) => {
-        console.error(`stderr: ${data}`);
-        });
-}
 
 exports.loadModel = (aud) => {
     const camino = process.cwd() + '/modelopb/2stems';

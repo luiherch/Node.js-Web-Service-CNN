@@ -1,5 +1,7 @@
 const User = require('../models/Users');
 const jwt = require('jsonwebtoken');
+const spleeter = require('../services/spleeter');
+const eController = require('./errorController');
 
 exports.restLogin = (req, res, next) => {
     let email = req.body.email;
@@ -42,15 +44,13 @@ exports.restSpleeter = (req, res, next) => {
         return eController.e422;
     }
     const nombre = req.file.originalname;
-    db.saveAudioFile(audioTrack, nombre, hilos, bitrate, codec).then( result => {
-        console.log(result);
-        let path = process.cwd() + '/mp3_sample';
-        let file = 'audio_example.mp3'      
-        let stems = spleeter.hilos(hilos);
-        spleeter.spawnSpleeter(1,1,stems,file)
-        .then((code)=>{
-            console.log(code);
-            zips.sendZip(file,res,path);
+    db.saveAudioFile(audioTrack, nombre, hilos, bitrate, codec)
+        .then( id => {
+            console.log(id); 
+            let stems = spleeter.hilos(hilos);
+            spleeter.spawnSpleeter(id, bitrate, codec, stems)
+        .then(code =>{
+            zips.sendZip(code[1],res,code[2]);
         })
         .catch((err)=>{
             console.log(err);
