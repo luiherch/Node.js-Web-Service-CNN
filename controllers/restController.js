@@ -2,6 +2,8 @@ const User = require('../models/Users');
 const jwt = require('jsonwebtoken');
 const spleeter = require('../services/spleeter');
 const eController = require('./errorController');
+const db = require('../services/db');
+const zips = require('../services/zips');
 
 exports.restLogin = (req, res, next) => {
     let email = req.body.email;

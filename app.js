@@ -5,6 +5,9 @@ const bodyParser = require('body-parser');
 const session = require('express-session');
 const sessionStorage = require('connect-mongodb-session')(session);
 
+const swaggerJsdoc = require("swagger-jsdoc");
+const swaggerUi = require("swagger-ui-express");
+
 const rutas = require('./routes/main');
 const rutasPrueba = require('./routes/test');
 const rutasREST = require('./routes/rest');
@@ -12,6 +15,21 @@ const eController = require('./controllers/errorController');
 
 const db_url = 'mongodb://127.0.0.1:27017/base_datos_spleeter';
 const auth = require('./services/autenticacion');
+
+const swaggerOptions = {
+    swaggerDefinition:{
+        title: 'Api :D',
+        description: "API information",
+        contact: {
+            name: "La Yusa"
+        },
+        servers: ["http://localhost:3000"]
+    },
+    apis: ["routes/rest.js"]
+};
+  
+const swaggerDocs = swaggerJsdoc(swaggerOptions);
+  
 
 const app = express();
 const sesStorage = new sessionStorage({
@@ -51,9 +69,15 @@ app.use(bodyParser.urlencoded({
   }));
 app.use(rutas);
 
+
 app.use(auth.corsHeaders);
 app.use(express.json());
 app.use(rutasREST);
+app.use(
+    "/api",
+    swaggerUi.serve,
+    swaggerUi.setup(swaggerDocs)
+  );
 app.use(eController.e404);
 
 

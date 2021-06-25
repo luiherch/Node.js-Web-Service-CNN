@@ -17,11 +17,12 @@ exports.corsHeaders = (req, res, next) => {
 }
 
 exports.validateToken = (req, res, next) => {
-    const wtoken = req.body.webtoken;
+    // const wtoken = req.body.webtoken;
+    const wtoken = req.headers['access-token'];
     console.log(wtoken)
     let decToken;
     try{
-        decToken = jwt.verify(wtoken.token, 'fideo kojima')
+        decToken = jwt.verify(wtoken, 'fideo kojima')
     } catch(err){
         console.log(err);
     }
