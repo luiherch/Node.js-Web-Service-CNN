@@ -2,8 +2,8 @@
     --azul-oscuro:#202124;
     --azul:#344973;
     --azul-claro:#1DF2DD;
-    --rosa:#D94862;
-    --lila:#31238C;
+    --rosa:#FF83FE;
+    --lila:#0a165c;
     --amarillo:#F2E750;
     --naranja-fuerte:#D97904;
     --naranja-suave:#F2B705;
@@ -16,19 +16,20 @@ html{
 
 body{
     height: 100%;
-    background: linear-gradient(60deg, var(--naranja-fuerte), var(--naranja-suave));
+    background: var(--lila);
     margin: 0px 0px 0px 0px;
 }
 
 nav{
     top: 0px;
     width: 100%;
-    font: var(--devsite-h1-font,300 34px/40px Roboto,Noto Sans,Noto Sans JP,Noto Sans KR,Noto Naskh Arabic,Noto Sans Thai,Noto Sans Hebrew,Noto Sans Bengali,sans-serif);
-    font-size: 17px;
+    font-family: 'Raleway', sans-serif;
+    font-weight: 500;
+    font-size: 20px;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    background: var(--azul-oscuro);
+    /* background: var(--azul-oscuro); */
 }
 
 .nav-menu{
@@ -41,7 +42,7 @@ nav{
 }
 
 .menu-item{
-    margin: 0px 15px 0px 15px;
+    margin: 0px 17px 0px 17px;
 }
 
 li a{
@@ -51,13 +52,13 @@ li a{
 }
 
 .active{
-    color: var(--amarillo)
+    color: var(--rosa)
 }
 
 .container{
     display: flex;
     position: relative;
-    height: 860px;
+    height: 100vh;
 }
 
 .imagen{
@@ -80,7 +81,7 @@ li a{
     width: auto;
     height: 300px;
     margin-left: auto;
-    margin-right: 140px;
+    margin-right: 360px;
     margin-top: 360px;
 }
 

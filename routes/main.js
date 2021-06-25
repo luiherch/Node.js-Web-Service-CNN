@@ -16,6 +16,13 @@ router.get('/main', (req, res, next) => {
   });
 });
 
+router.get('/api', (req, res, next) => {
+  res.render('api', {
+    autenticado: req.session.logged,
+    path: '/api'
+  });
+});
+
 router.get('/signup', (req, res, next) => {
   res.render('signup', {
     autenticado: false,
