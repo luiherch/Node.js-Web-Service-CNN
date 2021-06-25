@@ -17,13 +17,15 @@ const db_url = 'mongodb://127.0.0.1:27017/base_datos_spleeter';
 const auth = require('./services/autenticacion');
 
 const swaggerOptions = {
-    swaggerDefinition:{
-        title: 'Api :D',
-        description: "API information",
-        contact: {
-            name: "La Yusa"
+    definition:{
+        info: {
+            title: 'Prisma API',
+            version: '1.0.0',
+            description: "API information",
+            contact: {
+                name: "Luis Chirlaque"
+            }
         },
-        servers: ["http://localhost:3000"]
     },
     apis: ["routes/rest.js"]
 };

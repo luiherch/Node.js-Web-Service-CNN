@@ -7,9 +7,16 @@ const auth = require('../services/autenticacion');
 
 /**
  * @swagger
+ * tags:
+ *  name: Auth
+ */
+
+/**
+ * @swagger
  * /api/login:
  *  post:
  *      summary: Authentication
+ *      tags: [Auth]
  *      description: Route to log in with the credentials
  *      consumes:
  *       - application/x-www-form-urlencoded
@@ -31,11 +38,20 @@ const auth = require('../services/autenticacion');
  */
 router.post('/api/login', restController.restLogin);
 
+
+/**
+ * @swagger
+ * tags:
+ *  name: Separation
+ */
+
+
 /**
  * @swagger
  * /api/separate:
  *  post:
  *      summary: Track separation
+ *      tags: [Separation]
  *      description: Upload files to get file separation
  *      consumes:
  *        - multipart/form-data

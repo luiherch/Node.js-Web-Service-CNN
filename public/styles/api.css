@@ -1,0 +1,12 @@
+.col{
+    width:260px;
+    display: flex;
+    background-color: #FFFFFF;
+    overflow: hidden;
+    flex-direction: column;
+    position: sticky;
+}
+
+.col-item{
+    box-sizing: border-box;
+}
