@@ -162,3 +162,21 @@ input[type="file"]{
  #sub{
       margin-top: 20px;
   }
+
+.spleeter{
+    cursor: pointer;
+    text-decoration: none;
+    color: white;
+}
+
+.out{
+    text-decoration: none;
+    cursor: pointer;
+    color: white;
+    margin: 0px 17px 0px 17px;
+    font-family: 'Raleway', sans-serif;
+    font-weight: 500;
+    font-size: 22px;
+    border: none;
+    background: none;
+}
