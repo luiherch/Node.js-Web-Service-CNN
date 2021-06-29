@@ -1,7 +1,7 @@
 exports.e404 = (req, res, next) => {
     res.status(404).render('error', {
-        codigo: 'Error 404 (Not found)',
-        mensaje: 'El servidor no pudo encontrar el contenido solicitado.'
+        path: 'error',
+        autenticado: req.session.logged
     });
  };
 

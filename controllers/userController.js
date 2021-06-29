@@ -16,19 +16,13 @@ exports.signup = (req, res, next) => {
             let pw = req.body.pw;
             user.setPassword(pw, user);
             user.save().then(result => {
-                res.status(201).send({ 
-                    message : "User added successfully."
-                }); 
+                res.status(201).send('User added succesfully'); 
             }).catch(err => {
-                res.status(400).send({ 
-                    message : "Mala suerte amigo."
-                }); 
+                res.status(500).send('Internal Error'); 
             })
         }
         else{
-            res.status(400).send({ 
-                message : "Usuario ya existe"
-            }); 
+            res.status(400).send('User already exists'); 
         }
     });
     
@@ -39,9 +33,8 @@ exports.login = (req, res, next) => {
     let pw = req.body.pw;
     User.findOne({email:email}, (err, user)=>{
         if (user === null){
-            return res.status(400).send({ 
-                message : "User not found."
-            }); 
+            //user not found
+            return res.status(404).send('User not found');
         }
         else{
             if (user.validPassword(pw, user)){
@@ -53,9 +46,8 @@ exports.login = (req, res, next) => {
                 
             }
             else {
-                return res.status(401).send({ 
-                    message : "Wrong Password"
-                }); 
+                //wrong password
+                return res.status(401).send('Wrong password');
             }
         }
     });
