@@ -6,9 +6,7 @@
     <title>Prisma</title>
     <link rel="icon" href="images/prisma.ico">
     <link rel='stylesheet' type = 'text/css' href='styles/main.css'>
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=Raleway:wght@200;600&display=swap');
-        </style>
+
 </head>
 <body>
     <main>
@@ -20,9 +18,9 @@
                 <h2>Powered by Spleeter</h2>
             </div>
         </div>
-        <div class="container">
+        <!-- <div class="container">
             <img class="imagen" alt="stage" src="images/bass.jpg">
-        </div>
+        </div> -->
         <div class="container">
             <img class="imagen" alt="second" src="images/vinilo2.jpg">
             <div id="form">
@@ -31,32 +29,52 @@
                         <input type="file" accept="audio/*" name="audio_track" required>
                     </div>
                     <div>
-                        <input type="radio" id="2stems" name="stems" value="2" required>
-                        <label for="2stems">2 stems</label>
-                        <input type="radio" id="4stems" name="stems" value="4">
-                        <label for="4stems">4 stems</label>
-                        <input type="radio" id="5stems" name="stems" value="5">
-                        <label for="5stems">5 stems</label>
+                        <div class="bloque">
+                            <input type="radio" id="2stems" name="stems" value="2" required>
+                            <label for="2stems">2 stems</label>
+                        </div>
+                        <div class="bloque">
+                            <input type="radio" id="4stems" name="stems" value="4">
+                            <label for="4stems">4 stems</label>
+                        </div>
+                        <div class="bloque">
+                            <input type="radio" id="5stems" name="stems" value="5">
+                            <label for="5stems">5 stems</label>
+                        </div>
                     </div>
                     <div>
-                        <input type="radio" id="128k" name="bitrate" value="128" required>
-                        <label for="128k">128 kbps</label>
-                        <input type="radio" id="96k" name="bitrate" value="96">
-                        <label for="96k">96 kbps</label>
-                        <input type="radio" id="64k" name="bitrate" value="64">
-                        <label for="64k">64 kbps</label>
+                        <div class="bloque">
+                            <input type="radio" id="128k" name="bitrate" value="128" required>
+                            <label for="128k">128 kbps</label>
+                        </div>
+                        <div class="bloque">
+                            <input type="radio" id="96k" name="bitrate" value="96">
+                            <label for="96k">96 kbps</label>
+                        </div>
+                        <div class="bloque">
+                            <input type="radio" id="64k" name="bitrate" value="64">
+                            <label for="64k">64 kbps</label>                            
+                        </div>
                     </div>
                     <div>
-                        <input type="radio" id="m3" name="codec" value="mp3" required>
-                        <label for="m3">mp3</label>
-                        <input type="radio" id="wv" name="codec" value="wav">
-                        <label for="wv">wav</label>
-                        <input type="radio" id="fl" name="codec" value="flac">
-                        <label for="fl">flac</label>
-                        <input type="radio" id="og" name="codec" value="m4a">
-                        <label for="og">m4a</label>
+                        <div class="bloque">
+                            <input type="radio" id="m3" name="codec" value="mp3" required>
+                            <label for="m3">mp3</label>
+                        </div>
+                        <div class="bloque">
+                            <input type="radio" id="wv" name="codec" value="wav">
+                            <label for="wv">wav</label>
+                        </div>
+                        <div class="bloque">
+                            <input type="radio" id="fl" name="codec" value="flac">
+                            <label for="fl">flac</label>
+                        </div>
+                        <div class="bloque">
+                            <input type="radio" id="og" name="codec" value="m4a">
+                            <label for="og">m4a</label>
+                        </div>
                     </div>
-                    <input type="submit" value="Prisma!">
+                    <input type="submit" value="Prisma!" id="sub">
                 </form>
             </div>
         </div>

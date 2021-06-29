@@ -1,5 +1,6 @@
 const express = require('express');
 const router = express.Router();
+const {check} = require('express-validator/check');
 
 const restController = require('../controllers/restController');
 
@@ -28,15 +29,17 @@ const auth = require('../services/autenticacion');
  *         name: pw
  *         type: string
  *      responses:
- *          '201':
+ *          '200':
  *              description: Authentication succesful
  *          '400':
  *              description: User not found
  *          '401':
  *              description: Wrong password
+ *          '422':
+ *              description: Validation issue
  * 
  */
-router.post('/api/login', restController.restLogin);
+router.post('/api/login', check('email').isEmail(), restController.restLogin);
 
 
 /**
@@ -52,7 +55,7 @@ router.post('/api/login', restController.restLogin);
  *  post:
  *      summary: Track separation
  *      tags: [Separation]
- *      description: Upload files to get file separation
+ *      description: Upload files to get file separation. Remember you need to pass the jwt to header['access-token']
  *      consumes:
  *        - multipart/form-data
  *      parameters:
@@ -71,6 +74,8 @@ router.post('/api/login', restController.restLogin);
  *      responses:
  *          '200':
  *              description: Success
+ *          '401':
+ *              description: No authenticated
  *          '422': 
  *              description: Unprocessable entity
  * 

@@ -42,11 +42,11 @@ body {
 
 .top:before {
   transform: rotate(45deg);
-  background: #e46569;
+  background: blueviolet;
 }
 .top:after {
   transform: rotate(135deg);
-  background: #ecaf81;
+  background: darkred;
 }
 
 .bottom:before {

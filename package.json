@@ -21,7 +21,7 @@
     "express": "^4.17.1",
     "express-openapi": "^9.0.3",
     "express-session": "^1.17.2",
-    "express-validator": "^6.11.1",
+    "express-": "^6.11.1",
     "fluent-ffmpeg": "^2.1.2",
     "jsonwebtoken": "^8.5.1",
     "mongodb": "^3.6.5",

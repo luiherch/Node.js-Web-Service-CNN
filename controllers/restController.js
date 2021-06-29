@@ -4,10 +4,18 @@ const spleeter = require('../services/spleeter');
 const eController = require('./errorController');
 const db = require('../services/db');
 const zips = require('../services/zips');
+const {validationResult} = require('express-validator/check');
 
 exports.restLogin = (req, res, next) => {
     let email = req.body.email;
     let pw = req.body.pw;
+    const valErrors = validationResult(req);
+    if (!valErrors.isEmpty()){
+        return res.status(422).send({
+            message: valErrors.array()
+        })
+    }
+
     console.log(email);
     console.log(pw);
     User.findOne({email:email}, (err, user)=>{
@@ -23,7 +31,7 @@ exports.restLogin = (req, res, next) => {
                 }, 'fideo kojima', {
                     expiresIn:'1h'
                 });
-                return res.status(201).json({token:jwtoken, id: user._id.toString()})              
+                return res.status(200).json({token:jwtoken, id: user._id.toString()})              
             }
             else {
                 return res.status(401).send({ 

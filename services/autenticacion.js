@@ -11,13 +11,12 @@ exports.ensureAuth = (req, res, next) => {
 
 exports.corsHeaders = (req, res, next) => {
     res.setHeader('Access-Control-Allow-Origin', '*');
-    res.setHeader('Access-Control-Allow-Headers', 'GET, POST, PUT, PATCH, DELETE, OPTIONS');
+    res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, PATCH, DELETE, OPTIONS');
     res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
     next();
 }
 
 exports.validateToken = (req, res, next) => {
-    // const wtoken = req.body.webtoken;
     const wtoken = req.headers['access-token'];
     console.log(wtoken)
     let decToken;
@@ -26,14 +25,14 @@ exports.validateToken = (req, res, next) => {
     } catch(err){
         console.log(err);
     }
-
     if(!decToken){
-        console.log('no autenticado');
+        console.log('No autenticado');
+        return res.status(401).send({
+            message: 'Authentification missing'
+        })
     }
     else{
-        //req.id = decToken.id;
-        console.log('token validado');
+        console.log('Token validado');
         next();
     }
-
 }

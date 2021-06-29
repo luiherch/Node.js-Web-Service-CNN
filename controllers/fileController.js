@@ -5,11 +5,8 @@ const eController = require ('./errorController');
 const db = require('../services/db');
 
 exports.sendZip = (req, res, next) => {
-    /*
-    Crea el zip y lo va stremeando a la respuesta
-    */
     const zip = archiver('zip');
-    //streaming data
+    //streamea la respuesta
     res.setHeader('Content-Type', 'application/zip');
     res.setHeader('Content-Disposition', 'attachment; filename="example.zip"');
     zip.pipe(res);
@@ -21,7 +18,6 @@ exports.fullFunction = (req, res, next) => {
     const hilos = req.body.stems;
     const bitrate = req.body.bitrate;
     const codec = req.body.codec;
-    console.log('Hilos: '+hilos);
     if (!audioTrack) {
         //422 entidad improcesable
         return eController.e422;

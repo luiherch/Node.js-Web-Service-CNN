@@ -34,6 +34,19 @@ const swaggerDocs = swaggerJsdoc(swaggerOptions);
   
 
 const app = express();
+//cabeceras de seguridad
+app.use(function (req, res, next) {  
+    res.header("X-powered-by", "Prisma");
+    next();
+  });
+  
+// app.use(function (req, res, next) {
+//     res.setHeader(
+//       'Content-Security-Policy',
+//       "default-src 'self'; font-src 'self' https://fonts.gstatic.com; img-src 'self'; script-src 'self'; style-src 'self'; frame-src 'self'; style-src-elem 'self' https://fonts.googleapis.com"
+//     );
+//     next();
+//   });
 const sesStorage = new sessionStorage({
     uri: db_url,
     collection: 'sesiones'

@@ -1,8 +1,14 @@
 const User = require('../models/Users');
+const {validationResult} = require('express-validator/check');
 
 exports.signup = (req, res, next) => {
+    const valErrors = validationResult(req);
+    if (!valErrors.isEmpty()){
+        return res.status(422).send({
+            message: valErrors.array()
+        })
+    }
     let email = req.body.email;
-    let pw = req.body.pw;
     User.findOne({email: email}, (err, user)=>{
         if (!user){
             let user = new User();
