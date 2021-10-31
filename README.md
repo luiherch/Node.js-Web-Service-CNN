@@ -27,5 +27,5 @@ It manages the different routes of the service, calling to the respective contro
 ## util
 Additional functions
 
-# Autor
+# Author
 Luis Chirlaque Hernández
