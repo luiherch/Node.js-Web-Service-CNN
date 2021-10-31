@@ -13,7 +13,7 @@ Web service deployed on Node.js that serves a convolutional neural network (Sple
 2. Execute `npm start` to launch the app
 
 # Directories
-Basado on MVC architecture
+Based on MVC architecture
 
 ## views
 This folder contains all the views. I used a view engine in order to render dynamic content and send it to the user. For this project I used EJS for its simplicity and similarity with HTML and JS, but you can use other similar view engines such as Handlebars or Pug.
