@@ -1,32 +1,31 @@
 # Node.js Web Service
-Trabajo Fin de Grado
-Se trata de un servicio web desplegado mediante node.js, capaz de servir una red neuronal mediante un modelo en tensorflow.js. Utiliza mongodb como base de datos tipo NoSQL por su fácil implementación con node.
+Bachelor's Thesis
 
-## Requisitos
-Tener instalado Node.js.
-Para instalar las dependencias hace falta Python 2.7 y Visual Studio para los bindings de @tensorflow/tfjs-node conforme a la [documentación oficial](https://www.npmjs.com/package/@tensorflow/tfjs-node).
+Web service deployed on Node.js that serves a convolutional neural network (Spleeter - Deezer). The main framework is Express and the database used is MongoDB.
 
-## Inicialización
-1. Instalar todos los módulos necesarios mediante `npm install`
-2. Ejecutar `npm start`
+## Requirements
+- Node.js
+- MongoDB
+- Python 3.8
 
-# Directorios
-Basado en arquitectura MVC
+## Init
+1. Install all the npm modules with `npm install`
+2. Execute `npm start` to launch the app
 
-## models
-Este directorio contiene los modelos de datos del proyecto, los cuáles se comunican directamente con la base de datos.
+# Directories
+Basado on MVC architecture
 
 ## views
-Este directorio contiene el frontend. Todos los archivos que son enviados al cliente.
+This folder contains all the views. I used a view engine in order to render dynamic content and send it to the user. For this project I used EJS for its simplicity and similarity with HTML and JS, but you can use other similar view engines such as Handlebars or Pug.
 
 ## controllers
-Este directorio contiene a los controladores, que se encargan de comunicarse entre las vistas y los modelos.
+Contains all the controllers to handle the requests.
 
 ## routes
-Contiene las disferentes routes a las que se puede acceder a través del servicio web.
+It manages the different routes of the service, calling to the respective controller.
 
 ## util
-Contiene funciones adicionales para apoyar al resto de archivos.
+Additional functions
 
 # Autor
 Luis Chirlaque Hernández
