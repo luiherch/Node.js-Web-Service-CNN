@@ -1,7 +1,7 @@
 # Node.js Web Service
 Bachelor's Thesis
 
-Web service deployed on Node.js that serves a convolutional neural network (Spleeter - Deezer). The main framework is Express and the database used is MongoDB.
+Web service deployed on Node.js that serves a convolutional neural network (Spleeter - Deezer). The main framework is Express and the database used is MongoDB. It contains a user authentication service in ordre to use the API. This user auth can be extended with more functionalities.
 
 ## Requirements
 - Node.js
